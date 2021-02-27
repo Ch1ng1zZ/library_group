@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="768.0" styleClass="DB" stylesheets="@../design/DB.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.login.LoginController">
+   <children>
+      <Label fx:id="lbl" layoutX="309.0" layoutY="192.0" prefHeight="47.0" prefWidth="150.0" text="login to account">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="245.0" layoutX="315.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/user.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="loginTxt" layoutX="276.0" layoutY="250.0" onKeyReleased="#checkLogin" prefHeight="47.0" prefWidth="216.0" promptText="Enter login...">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="pwdTxt" layoutX="276.0" layoutY="313.0" onKeyReleased="#checkPassword" prefHeight="48.0" prefWidth="216.0" promptText="Enter password...">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font size="22.0" />
+         </font>
+      </PasswordField>
+      <Label fx:id="crtAcc" layoutX="332.0" layoutY="374.0" onMouseClicked="#crtAccAction" prefHeight="15.0" prefWidth="150.0" text="create account" textFill="#3232eb">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginBtn" layoutX="303.0" layoutY="431.0" mnemonicParsing="false" onAction="#loginBtnAction" prefHeight="56.0" prefWidth="162.0" text="LOGIN">
+         <font>
+            <Font name="Georgia" size="30.0" />
+         </font>
+      </Button>
+      <Label fx:id="warningLBL" layoutX="303.0" layoutY="403.0" prefHeight="21.0" prefWidth="328.0" textFill="RED" />
+      <ImageView fx:id="warningImg1" fitHeight="48.0" fitWidth="56.0" layoutX="519.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/warning.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warningImg2" fitHeight="48.0" fitWidth="56.0" layoutX="519.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/warning.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
