@@ -2,6 +2,7 @@ package com.login;
 
 import com.dao.DaoImpl;
 import com.model.Users;
+import com.page.PageController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,8 +25,9 @@ import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
+    public static String username2 = null;
     DaoImpl dao = new DaoImpl();
-    
+
     @FXML
     private Label lbl;
     @FXML
@@ -53,9 +55,9 @@ public class LoginController implements Initializable {
     @FXML
     private void crtAccAction(MouseEvent event) throws IOException {
         Stage stage = new Stage();
-       stage.setTitle("Create Account");
-       stage.getIcons().add(new Image("/com/image/createAccaunt.png"));
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/createAccaunt/createAccount.fxml"));
+        stage.setTitle("Create Account");
+        stage.getIcons().add(new Image("/com/image/createAccaunt.png"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/createAccaunt/createAccount.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -66,7 +68,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginBtnAction(ActionEvent event) {
-  String username = loginTxt.getText().trim();
+        username2 = loginTxt.getText();
+        String username = loginTxt.getText().trim();
         String password = pwdTxt.getText().trim();
         if (username.equalsIgnoreCase("") || password.equalsIgnoreCase("")) {
             warningLBL.setText("fill in boxes!");
@@ -77,44 +80,44 @@ public class LoginController implements Initializable {
             } else {
                 try {
                     Stage stage = new Stage();
-                    stage.setTitle("Main Page");
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/page/page.fxml"));
+                    stage.setTitle("Library");
+                    stage.getIcons().add(new Image("/com/image/library.png"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/page/page.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
-                    Stage oldStage =  (Stage) loginBtn.getScene().getWindow();
+                      PageController pc = loader.getController();
+                    pc.setUser(user);
+                    Stage oldStage = (Stage) loginBtn.getScene().getWindow();
                     oldStage.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        
 
-    }
+        }
     }
 
     @FXML
     private void checkLogin(KeyEvent event) {
-       warningLBL.setText("");
+        warningLBL.setText("");
         if (loginTxt.getText().trim().equalsIgnoreCase("")) {
-             warningImg1.setVisible(true);
+            warningImg1.setVisible(true);
         } else {
-           warningImg1.setVisible(false);
+            warningImg1.setVisible(false);
             if (loginTxt.getText().trim().contains(",")) {
                 warningLBL.setText("Login contains ' , ' ");
                 warningImg1.setVisible(true);
             }
 
         }
-    
-    
-    
+
     }
 
     @FXML
     private void checkPassword(KeyEvent event) {
-     warningLBL.setText("");
+        warningLBL.setText("");
         if (pwdTxt.getText().trim().equalsIgnoreCase("")) {
             warningImg2.setVisible(true);
         } else {

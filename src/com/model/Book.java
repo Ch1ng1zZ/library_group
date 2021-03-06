@@ -4,10 +4,12 @@ public class Book {
     private String name;
     private String theme;
     private String author;
-    private String language;
-    private String status;
-    private Integer pageCount;
-    private Double amount;
+    private Integer page_count;
+   private String language;
+     private Double amount;  
+       private String status;
+  
+  
 
     public Integer getId() {
         return id;
@@ -57,12 +59,12 @@ public class Book {
         this.status = status;
     }
 
-    public Integer getPageCount() {
-        return pageCount;
+    public Integer getPage_count() {
+        return page_count;
     }
 
-    public void setPageCount(Integer pageCount) {
-        this.pageCount = pageCount;
+    public void setPage_count(Integer page_count) {
+        this.page_count = page_count;
     }
 
     public Double getAmount() {
@@ -75,7 +77,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", name=" + name + ", theme=" + theme + ", author=" + author + ", language=" + language + ", status=" + status + ", pageCount=" + pageCount + ", amount=" + amount + '}';
+        return "Book{" + "id=" + id + ", name=" + name + ", theme=" + theme + ", author=" + author + ", language=" + language + ", status=" + status + ", page_count=" + page_count + ", amount=" + amount + '}';
     }
         
 }
