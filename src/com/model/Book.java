@@ -1,15 +1,15 @@
 package com.model;
+
 public class Book {
-   private Integer id;
+
+    private Integer id;
     private String name;
     private String theme;
     private String author;
     private Integer page_count;
-   private String language;
-     private Double amount;  
-       private String status;
-  
-  
+    private String language;
+    private Double amount;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -79,5 +79,5 @@ public class Book {
     public String toString() {
         return "Book{" + "id=" + id + ", name=" + name + ", theme=" + theme + ", author=" + author + ", language=" + language + ", status=" + status + ", page_count=" + page_count + ", amount=" + amount + '}';
     }
-        
+
 }

@@ -1,6 +1,5 @@
 package com.page;
 
-
 import com.dao.DaoImpl;
 import com.login.LoginController;
 import com.model.Book;
@@ -29,13 +28,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+
 public class PageController implements Initializable {
-  private Users user;
+
+    private Users user;
     DaoImpl dao = new DaoImpl();
-   Integer selectedId = 0;
+    Integer selectedId = 0;
 
-
-  @FXML
+    @FXML
     private ToggleGroup a;
     @FXML
     private TextField bookNameTxt;
@@ -126,7 +126,7 @@ public class PageController implements Initializable {
     @FXML
     private TableColumn<Book, Integer> IdColumn;
     @FXML
-    private TableColumn<Book,  String> nameColumn;
+    private TableColumn<Book, String> nameColumn;
     @FXML
     private TableColumn<Book, String> themeColumn;
     @FXML
@@ -134,28 +134,31 @@ public class PageController implements Initializable {
     @FXML
     private TableColumn<Book, Integer> pageCountColumn;
     @FXML
-    private TableColumn<Book,Double > priceColumn;
+    private TableColumn<Book, Double> priceColumn;
     @FXML
     private TableColumn<Book, String> languageColumn;
     @FXML
     private TableColumn<Book, String> statusColumn;
- Users u = new Users();
+    Users u = new Users();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   loadLanguageCB();
+        loadLanguageCB();
         loadThemeCB();
         tableV.setVisible(false);
-        welcomeLbl.setText("Welcome, "+LoginController.username2);
+        welcomeLbl.setText("Welcome, " + LoginController.username2);
         loadColumn();
         loadRows();
-    }    
-
- public void setUser(Users selectedUser) {
+     hideBtn.setVisible(false);
+    }
+    
+    public void setUser(Users selectedUser) {
         this.user = selectedUser;
     }
+
     @FXML
     private void buyBtnActon(ActionEvent event) {
-       boolean isUpdated = dao.updateBookByStatus(selectedId);
+        boolean isUpdated = dao.updateBookByStatus(selectedId);
         if (isUpdated) {
             refresh();
             warningLbl.setText("Status changed succesfully!");
@@ -166,7 +169,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void filterBtnAction(ActionEvent event) {
-      if (soldBtn.isSelected()) {
+        if (soldBtn.isSelected()) {
             List<Book> soldBook = dao.filterBookByStatus("Sold");
             tableV.getItems().clear();
             tableV.getItems().addAll(soldBook);
@@ -182,21 +185,22 @@ public class PageController implements Initializable {
 
     @FXML
     private void deleteBtnAction(ActionEvent event) {
-      if (dao.deleteBook(selectedId)) {
+        if (dao.deleteBook(selectedId)) {
             refresh();
             warningLbl.setText("Deleted succesfully!");
         } else {
             warningLbl.setText("Not deleted!");
         }
     }
- public void refresh() {
+
+    public void refresh() {
         tableV.getItems().clear();
         tableV.getItems().addAll(dao.getAllBooks());
     }
 
     @FXML
     private void addLanguageBtn(ActionEvent event) {
-      String newLanguage = JOptionPane.showInputDialog(null,"New Language");
+        String newLanguage = JOptionPane.showInputDialog(null, "New Language");
         if (newLanguage.equalsIgnoreCase("")) {
             warningLbl.setText("Language is empty!");
         } else {
@@ -205,14 +209,11 @@ public class PageController implements Initializable {
             } else {
                 if (LngComboBox.getItems().add(newLanguage)) {
                     warningLbl.setText("New Language successfully added!");
-                } 
+                }
             }
         }
-    
-    
-    }
 
-    
+    }
 
     @FXML
     private void languageComboboxAction(ActionEvent event) {
@@ -224,7 +225,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void saveBtnAction(ActionEvent event) {
-      warningLbl.setText("");
+        warningLbl.setText("");
         if (bookNameTxt.getText().equalsIgnoreCase("") || authorTxt.getText().equalsIgnoreCase("") || pageCountTxt.getText().equalsIgnoreCase("") || priceTxt.getText().equalsIgnoreCase("")) {
             warningLbl.setText("pleace fill in all boxes!");
         } else {
@@ -250,7 +251,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void uptadeBtnAction(ActionEvent event) {
-      warningLbl.setText("");
+        warningLbl.setText("");
         if (bookNameTxt.getText().equalsIgnoreCase("") || authorTxt.getText().equalsIgnoreCase("") || pageCountTxt.getText().equalsIgnoreCase("") || priceTxt.getText().equalsIgnoreCase("")) {
             warningLbl.setText("pleace fill in all boxes!");
         } else {
@@ -276,11 +277,9 @@ public class PageController implements Initializable {
 
     }
 
-    
-
     @FXML
     private void addThemeBtn(ActionEvent event) {
-      String newTheme = JOptionPane.showInputDialog(null,"New Theme");
+        String newTheme = JOptionPane.showInputDialog(null, "New Theme");
         if (newTheme.equalsIgnoreCase("")) {
             warningLbl.setText("Theme is empty!");
         } else {
@@ -289,14 +288,14 @@ public class PageController implements Initializable {
             } else {
                 if (ThmComboBox.getItems().add(newTheme)) {
                     warningLbl.setText("New Theme successfully added!");
-                } 
+                }
             }
         }
     }
 
     @FXML
     private void filter1BtnAction(ActionEvent event) {
-      warningLbl.setText("");
+        warningLbl.setText("");
         if (min1Txt.getText().trim().equalsIgnoreCase("") || max1Txt.getText().trim().equalsIgnoreCase("")) {
             warningLbl.setText("Pleace fill in all boxes!");
         } else {
@@ -310,7 +309,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void filter2BtnAction(ActionEvent event) {
-       warningLbl.setText("");
+        warningLbl.setText("");
         if (min2Txt.getText().trim().equalsIgnoreCase("") || max2Txt.getText().trim().equalsIgnoreCase("")) {
             warningLbl.setText("pleace fill in all boxes!");
         } else {
@@ -324,7 +323,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void clearAllFltrBtnAction(ActionEvent event) {
-     searchTxt.setText("");
+        searchTxt.setText("");
         min1Txt.setText("");
         max1Txt.setText("");
         min2Txt.setText("");
@@ -334,20 +333,20 @@ public class PageController implements Initializable {
 
     @FXML
     private void logoutAction(MouseEvent event) {
-     try {
+        try {
             int response = JOptionPane.showConfirmDialog(null, "Are you sure?");
             if (response == JOptionPane.YES_OPTION) {
                 Stage stage = (Stage) logOut.getScene().getWindow();
                 stage.close();
-               Stage stage1 = new Stage();
-       stage1.setTitle("Login");
-       stage1.getIcons().add(new Image("/com/image/user.png"));
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/login/login.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+                Stage stage1 = new Stage();
+                stage1.setTitle("Login");
+                stage1.getIcons().add(new Image("/com/image/user.png"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/login/login.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
 
-        stage.setScene(scene);
-        stage.show();
+                stage.setScene(scene);
+                stage.show();
             } else {
             }
         } catch (Exception e) {
@@ -357,16 +356,19 @@ public class PageController implements Initializable {
 
     @FXML
     private void hideAction(MouseEvent event) {
-    tableV.setVisible(false);
-    
+        tableV.setVisible(false);
+    showBtn.setVisible(true);
+        hideBtn.setVisible(false);
     }
 
     @FXML
     private void showAction(MouseEvent event) {
-    tableV.setVisible(true);
-      
+        tableV.setVisible(true);
+hideBtn.setVisible(true);
+        showBtn.setVisible(false);
     }
-      private void loadColumn() {
+
+    private void loadColumn() {
         IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -376,7 +378,8 @@ public class PageController implements Initializable {
         themeColumn.setCellValueFactory(new PropertyValueFactory<>("theme"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
-       private void loadLanguageCB() {
+
+    private void loadLanguageCB() {
         List<String> language = new ArrayList<String>();
         LngComboBox.getItems().add("Azerbaijani");
         LngComboBox.getItems().add("Russian");
@@ -385,8 +388,8 @@ public class PageController implements Initializable {
         LngComboBox.getItems().add("Germany");
         LngComboBox.getItems().add("Turkish");
         LngComboBox.getItems().add("Chinese");
-          LngComboBox.getItems().add("Portuguese");
-          LngComboBox.getItems().add("Japanese");
+        LngComboBox.getItems().add("Portuguese");
+        LngComboBox.getItems().add("Japanese");
         LngComboBox.getSelectionModel().selectFirst();
     }
 
@@ -398,18 +401,19 @@ public class PageController implements Initializable {
         ThmComboBox.getItems().add("Science");
         ThmComboBox.getItems().add("Dedective");
         ThmComboBox.getItems().add("Self improvement");
-       ThmComboBox.getItems().add("Drama");
+        ThmComboBox.getItems().add("Drama");
         ThmComboBox.getItems().add("Comedy");
-         ThmComboBox.getItems().add("For kids");
+        ThmComboBox.getItems().add("For kids");
         ThmComboBox.getSelectionModel().selectFirst();
     }
-   private void loadRows() {
+
+    private void loadRows() {
         tableV.getItems().addAll(dao.getAllBooks());
     }
 
     @FXML
     private void searchTxtKeyReleased(KeyEvent event) {
-       String keyword = searchTxt.getText().toUpperCase().trim();
+        String keyword = searchTxt.getText().toUpperCase().trim();
         if (keyword.equalsIgnoreCase("")) {
             refresh();
         } else {
@@ -421,7 +425,7 @@ public class PageController implements Initializable {
 
     @FXML
     private void tbleVmousePressed(MouseEvent event) {
-    Book book = tableV.getSelectionModel().getSelectedItem();
+        Book book = tableV.getSelectionModel().getSelectedItem();
         bookNameTxt.setText(book.getName());
         authorTxt.setText(book.getAuthor());
         pageCountTxt.setText(book.getPage_count() + "");

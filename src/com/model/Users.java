@@ -1,6 +1,7 @@
 package com.model;
 
 public class Users {
+
     private Integer id;
     private String name;
     private String surname;
@@ -8,11 +9,11 @@ public class Users {
     private String password;
     private String mail;
     private String address;
-    
-    public Users(){
-        
+
+    public Users() {
+
     }
-    
+
     public Users(Integer id, String name, String surname, String username, String password, String mail, String address) {
         this.id = id;
         this.name = name;
@@ -84,5 +85,4 @@ public class Users {
         return "Users{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password + ", mail=" + mail + ", address=" + address + '}';
     }
 
-   
 }
